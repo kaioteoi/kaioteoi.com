@@ -1,0 +1,39 @@
+{
+  "name": "kaioteoi.com",
+  "version": "1.0.0",
+  "description": "Pracion: Evolving and sharing knowledge.",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kaioteoi/kaioteoi.com.git"
+  },
+  "keywords": [
+    "Kaio",
+    "Teoi",
+    "Web",
+    "Developer",
+    "Portfolio"
+  ],
+  "author": "Kaio Teoi <contact@kaioteoi.com> (kaioteoi.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kaioteoi/kaioteoi.com/issues"
+  },
+  "homepage": "https://github.com/kaioteoi/kaioteoi.com#readme",
+  "devDependencies": {
+    "browser-sync": "^2.18.6",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-cache": "^0.4.5",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-if": "^2.0.2",
+    "gulp-imagemin": "^3.1.1",
+    "gulp-sass": "^3.1.0",
+    "gulp-uglify": "^2.0.0",
+    "gulp-useref": "^3.1.2",
+    "run-sequence": "^1.2.2"
+  }
+}
