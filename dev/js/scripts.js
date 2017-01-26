@@ -10,11 +10,11 @@ function afterLoad() {
 function showPage() {
 	document.getElementById('loader').style.display = 'none';
 
-	let contentWrapper = document.getElementsByClassName('content-wrapper')[0];
+	var contentWrapper = document.getElementsByClassName('content-wrapper')[0];
 	contentWrapper.style.display = 'block';
 
 	centralizeElement([contentWrapper]);
-}
+};
 
 function centralizeElement(elements) {
 	elements.forEach(function(e) {
@@ -27,7 +27,7 @@ function centralizeElement(elements) {
 			e.style.marginTop = autoHeight + "px";
 		}
 	});
-}
+};
 
 window.onresize = function(){
 	centralizeElement([

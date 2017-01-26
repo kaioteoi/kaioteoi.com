@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 
 var del = require('del');
+var pump = require('pump');
 var sass = require('gulp-sass');
 var gulpIf = require('gulp-if');
 var cache = require('gulp-cache');
@@ -12,7 +13,7 @@ var runSequence = require('run-sequence');
 var browserSync = require('browser-sync').create();
 
 gulp.task('sass', function() {
-  return gulp.src('dev/scss/**/*.scss') // Gets all files ending with .scss in dev/scss
+  return gulp.src('dev/scss/*.scss') // Gets all files ending with .scss in dev/scss
     .pipe(sass())
     .pipe(gulp.dest('dev/css'))
     .pipe(browserSync.reload({
@@ -28,7 +29,7 @@ gulp.task('browserSync', function() {
   })
 });
 
-gulp.task('useref', function(){
+gulp.task('useref', function(cb){
   return gulp.src('dev/*.html')
     .pipe(useref())
     .pipe(gulpIf('*.js', uglify()))
@@ -52,17 +53,17 @@ gulp.task('fonts', function() {
 });
 
 gulp.task('watch', ['sass','browserSync'], function (){
-  gulp.watch('dev/scss/**/*.scss', ['sass']); 
-  gulp.watch(['dev/*.html','dev/js/**/*.js'], browserSync.reload); 
+  gulp.watch('dev/scss/**/*.scss', ['sass']);
+  gulp.watch(['dev/*.html','dev/js/**/*.js'], browserSync.reload);
 });
 
 gulp.task('clean:dist', function() {
   return del.sync('dist');
-})
+});
 
 gulp.task('build', function(callback) {
   runSequence(['clean:dist','sass'],
     ['useref','images','fonts'],
     callback
   )
-})
+});
