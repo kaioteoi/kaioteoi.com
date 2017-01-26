@@ -1,7 +1,6 @@
 var gulp = require('gulp');
 
 var del = require('del');
-var pump = require('pump');
 var sass = require('gulp-sass');
 var gulpIf = require('gulp-if');
 var cache = require('gulp-cache');
@@ -32,6 +31,7 @@ gulp.task('browserSync', function() {
 gulp.task('useref', function(cb){
   return gulp.src('dev/*.html')
     .pipe(useref())
+    // Minifies only if it's a JS file
     .pipe(gulpIf('*.js', uglify()))
     // Minifies only if it's a CSS file
     .pipe(gulpIf('*.css', cssnano()))
