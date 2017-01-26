@@ -51,22 +51,19 @@ span {
 	@include crossbrowser(animation-duration,1s);
 }
 
+.content-wrapper {
+  display: none;
+}
+
 .loader {
     border: 0px solid transparent;
-    border-top: 5px solid #ff0000; 
+    border-top: 5px solid #ff0000;
     border-radius: 50%;
     width: 120px;
     height: 120px;
-	@include crossbrowser(animation, spin 2s infinite linear);
-}
-
-.loader:before {
-	border: 5px solid #000; /* Light grey */
-    border-top: 5px solid #3498db; /* Blue */
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-	@include crossbrowser(animation, spin 2s infinite linear);
+    display: block;
+    margin: auto;
+    @include crossbrowser(animation, spin 0.5s infinite linear);
 }
 
 .loading {
@@ -80,7 +77,6 @@ span {
 }
 
 .my-text {
-  display: none;
   text-align: center;
   color: #fff;
   font-size: 40px;

@@ -1,4 +1,5 @@
-document.addEventListener("DOMContentLoaded", function(event) {   
+document.addEventListener("DOMContentLoaded", function(event) {
+	centralizeElement([document.getElementById('loader')]);
 	afterLoad();
 });
 
@@ -8,20 +9,29 @@ function afterLoad() {
 
 function showPage() {
 	document.getElementById('loader').style.display = 'none';
-	document.getElementById('text-div').style.display = 'block';
-	centralizeElement();
+
+	let contentWrapper = document.getElementsByClassName('content-wrapper')[0];
+	contentWrapper.style.display = 'block';
+
+	centralizeElement([contentWrapper]);
 }
-	
-function centralizeElement() {
-	var windowHeight = window.innerHeight;
-	var textDivHeight = document.getElementById("text-div").offsetHeight;
-	var textDiv = document.getElementById("text-div");
 
-	var autoHeight = (windowHeight - textDivHeight) / 2;
+function centralizeElement(elements) {
+	elements.forEach(function(e) {
+		if(e) {
+			var windowHeight = window.innerHeight;
+			var eHeight = e.offsetHeight;
 
-	textDiv.style.marginTop = autoHeight + "px";
+			var autoHeight = (windowHeight - eHeight) / 2;
+
+			e.style.marginTop = autoHeight + "px";
+		}
+	});
 }
 
 window.onresize = function(){
-	centralizeElement();
+	centralizeElement([
+		document.getElementsByClassName('content-wrapper')[0],
+		document.getElementById('loader')
+	]);
 };
