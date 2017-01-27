@@ -1,0 +1,43 @@
+// Mixins
+
+@import './mixins/main';
+
+// Fonts
+
+@font-face { @include font-family(Moon Light,moon-light,"../fonts"); }
+
+// Styles
+
+.k-header {
+  background: #000;
+}
+
+@media screen and (min-width: 320px) {
+  .nav.left { display: none; }
+  .nav.right { display: none; }
+}
+
+@media screen and (min-width: 768px) {
+  .nav.left {
+    @include verticalnav;
+    left: 0;
+  }
+
+  .nav.right {
+    @include verticalnav;
+    right: 0;
+  }
+
+  .nav.item {
+    width: 100%;
+    display: block;
+    text-align: center;
+    margin-top: 100px;
+  }
+}
+
+@media screen and (min-width: 991px) {
+  .k-header {
+    height: 277px;
+  }
+}

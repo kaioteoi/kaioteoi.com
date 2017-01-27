@@ -54,7 +54,7 @@ gulp.task('fonts', function() {
 
 gulp.task('watch', ['sass','browserSync'], function (){
   gulp.watch('dev/scss/**/*.scss', ['sass']);
-  gulp.watch(['dev/*.html','dev/js/**/*.js'], browserSync.reload);
+  gulp.watch(['dev/*.html','dev/js/*.js'], browserSync.reload);
 });
 
 gulp.task('clean:dist', function() {
