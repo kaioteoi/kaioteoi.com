@@ -1,0 +1,15 @@
+navbar {
+  & span:first-child { margin-top: 10vh; }
+
+  & button {
+    &.k-button {
+      transition: 0.5s;
+      margin-bottom: 3vh;
+      border-style: none;
+      background-color: rgb(0,0,0);
+      color: #fff;
+
+      &:hover { background-color: #000000; color: #fff; }
+    }
+  }
+}
