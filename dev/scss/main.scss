@@ -1,46 +1,92 @@
-// Mixins
-
 @import './mixins/main';
 
-// Elements
-
-@import './elements/main';
-
-// Fonts
+// @Fonts
 
 @font-face { @include font-family(Moon Light,moon-light,"../fonts"); }
+@font-face { @include font-family(Saros,saros-regular,"../fonts"); }
 
-// Styles
+// @Keyframes
 
-.k-header {
-  background: #000;
+@include keyframes(animatebottom) {
+	from {bottom:-100px; opacity: 0}
+	to { bottom:0; opacity:1 }
 }
 
-@media screen and (min-width: 320px) {
-  .nav.left { visibility: hidden; }
-  .nav.right { visibility: hidden; }
+@include keyframes(spin) {
+	0% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg);
+	}
 }
 
-@media screen and (min-width: 768px) {
-  .nav.left {
-    @include verticalnav;
-    left: 0;
-  }
+// @Styles
+// elements
 
-  .nav.right {
-    @include verticalnav;
-    right: 0;
-  }
+a, h1, h2, h3, p, span {
+	font-family: Moon Light;
+}
 
-  .nav.item {
-    width: 100%;
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+body {
+	background-color: #000000;
+}
+
+span {
+	font-size: 30px;
+}
+
+// classes
+
+.animate-bottom {
+	position: relative;
+	@include crossbrowser(animation-name, animatebottom);
+	@include crossbrowser(animation-duration,1s);
+}
+
+.content-wrapper {
+  display: none;
+}
+
+.loader {
+    border: 0px solid transparent;
+    border-top: 5px solid #ff0000;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
     display: block;
-    text-align: center;
-  }
+    margin: auto;
+    @include crossbrowser(animation, spin 0.5s infinite linear);
 }
 
-@media screen and (min-width: 991px) {
-  .k-header {
-    height: 277px;
-  }
+.loading {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url(../images/loading.gif) center no-repeat #fff;
+}
+
+.my-text {
+  text-align: center;
+  color: #fff;
+  font-size: 40px;
+  width: 100%;
+}
+
+.social-media a {
+	transition: 0.5s;
+}
+
+.social-media a:hover {
+	color: #ff0000;
 }

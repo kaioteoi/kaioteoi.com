@@ -1,48 +1,137 @@
-navbar span:first-child {
-  margin-top: 10vh; }
-
-navbar button.k-button {
-  transition: 0.5s;
-  margin-bottom: 3vh;
-  border-style: none;
-  background-color: black;
-  color: #fff; }
-  navbar button.k-button:hover {
-    background-color: #000000;
-    color: #fff; }
-
 @font-face {
   font-family: Moon Light;
   src: url(../fonts/moon-light.eot);
   src: url(../fonts/moon-light.eot?#iefix) format("embedded-opentype"), url(../fonts/moon-light.woff2) format("woff2"), url(../fonts/moon-light.woff) format("woff"), url(../fonts/moon-light.ttf) format("truetype"), url(../fonts/moon-light.svg#svgmoon-light) format("svg"); }
 
-.k-header {
-  background: #000; }
+@font-face {
+  font-family: Saros;
+  src: url(../fonts/saros-regular.eot);
+  src: url(../fonts/saros-regular.eot?#iefix) format("embedded-opentype"), url(../fonts/saros-regular.woff2) format("woff2"), url(../fonts/saros-regular.woff) format("woff"), url(../fonts/saros-regular.ttf) format("truetype"), url(../fonts/saros-regular.svg#svgsaros-regular) format("svg"); }
 
-@media screen and (min-width: 320px) {
-  .nav.left {
-    visibility: hidden; }
-  .nav.right {
-    visibility: hidden; } }
+@-webkit-keyframes animatebottom {
+  from {
+    bottom: -100px;
+    opacity: 0; }
+  to {
+    bottom: 0;
+    opacity: 1; } }
 
-@media screen and (min-width: 768px) {
-  .nav.left {
-    width: 200px;
-    height: 100vh;
-    position: fixed;
-    visibility: visible;
-    left: 0; }
-  .nav.right {
-    width: 200px;
-    height: 100vh;
-    position: fixed;
-    visibility: visible;
-    right: 0; }
-  .nav.item {
-    width: 100%;
-    display: block;
-    text-align: center; } }
+@-moz-keyframes animatebottom {
+  from {
+    bottom: -100px;
+    opacity: 0; }
+  to {
+    bottom: 0;
+    opacity: 1; } }
 
-@media screen and (min-width: 991px) {
-  .k-header {
-    height: 277px; } }
+@-o-keyframes animatebottom {
+  from {
+    bottom: -100px;
+    opacity: 0; }
+  to {
+    bottom: 0;
+    opacity: 1; } }
+
+@keyframes animatebottom {
+  from {
+    bottom: -100px;
+    opacity: 0; }
+  to {
+    bottom: 0;
+    opacity: 1; } }
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+
+@-moz-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+
+@-o-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+
+a, h1, h2, h3, p, span {
+  font-family: Moon Light; }
+
+a {
+  text-decoration: none;
+  color: inherit; }
+
+body {
+  background-color: #000000; }
+
+span {
+  font-size: 30px; }
+
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -moz-animation-name: animatebottom;
+  -ms-animation-name: animatebottom;
+  -o-animation-name: animatebottom;
+  animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  -moz-animation-duration: 1s;
+  -ms-animation-duration: 1s;
+  -o-animation-duration: 1s;
+  animation-duration: 1s; }
+
+.content-wrapper {
+  display: none; }
+
+.loader {
+  border: 0px solid transparent;
+  border-top: 5px solid #ff0000;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  display: block;
+  margin: auto;
+  -webkit-animation: spin 0.5s infinite linear;
+  -moz-animation: spin 0.5s infinite linear;
+  -ms-animation: spin 0.5s infinite linear;
+  -o-animation: spin 0.5s infinite linear;
+  animation: spin 0.5s infinite linear; }
+
+.loading {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: url(../images/loading.gif) center no-repeat #fff; }
+
+.my-text {
+  text-align: center;
+  color: #fff;
+  font-size: 40px;
+  width: 100%; }
+
+.social-media a {
+  transition: 0.5s; }
+
+.social-media a:hover {
+  color: #ff0000; }

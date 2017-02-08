@@ -1,0 +1,48 @@
+navbar span:first-child {
+  margin-top: 10vh; }
+
+navbar button.k-button {
+  transition: 0.5s;
+  margin-bottom: 3vh;
+  border-style: none;
+  background-color: black;
+  color: #fff; }
+  navbar button.k-button:hover {
+    background-color: #000000;
+    color: #fff; }
+
+@font-face {
+  font-family: Moon Light;
+  src: url(../fonts/moon-light.eot);
+  src: url(../fonts/moon-light.eot?#iefix) format("embedded-opentype"), url(../fonts/moon-light.woff2) format("woff2"), url(../fonts/moon-light.woff) format("woff"), url(../fonts/moon-light.ttf) format("truetype"), url(../fonts/moon-light.svg#svgmoon-light) format("svg"); }
+
+.k-header {
+  background: #000; }
+
+@media screen and (min-width: 320px) {
+  .nav.left {
+    visibility: hidden; }
+  .nav.right {
+    visibility: hidden; } }
+
+@media screen and (min-width: 768px) {
+  .nav.left {
+    width: 200px;
+    height: 100vh;
+    position: fixed;
+    visibility: visible;
+    left: 0; }
+  .nav.right {
+    width: 200px;
+    height: 100vh;
+    position: fixed;
+    visibility: visible;
+    right: 0; }
+  .nav.item {
+    width: 100%;
+    display: block;
+    text-align: center; } }
+
+@media screen and (min-width: 991px) {
+  .k-header {
+    height: 277px; } }
