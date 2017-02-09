@@ -1,92 +1,93 @@
+// Mixins
+
 @import './mixins/main';
 
-// @Fonts
+@mixin section-layout {
+  display: table;
+  width: 100%;
+  position: relative;
+}
+
+@mixin content-center {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+// Elements
+
+@import './elements/main';
+
+// Fonts
 
 @font-face { @include font-family(Moon Light,moon-light,"../fonts"); }
-@font-face { @include font-family(Saros,saros-regular,"../fonts"); }
 
-// @Keyframes
-
-@include keyframes(animatebottom) {
-	from {bottom:-100px; opacity: 0}
-	to { bottom:0; opacity:1 }
-}
-
-@include keyframes(spin) {
-	0% {
-		-webkit-transform: rotate(0deg);
-		transform: rotate(0deg);
-	}
-	100% {
-		-webkit-transform: rotate(360deg);
-		transform: rotate(360deg);
-	}
-}
-
-// @Styles
-// elements
-
-a, h1, h2, h3, p, span {
-	font-family: Moon Light;
-}
-
-a {
-	text-decoration: none;
-	color: inherit;
-}
+// Styles
 
 body {
-	background-color: #000000;
+  font-family: Moon Light;
+  color: #ffffff;
 }
 
-span {
-	font-size: 30px;
+#header, #about, #resume, #footer {
+  @include section-layout;
+
+  &>.content { @include content-center; }
 }
 
-// classes
-
-.animate-bottom {
-	position: relative;
-	@include crossbrowser(animation-name, animatebottom);
-	@include crossbrowser(animation-duration,1s);
+#header {
+  height: 100vh;
+  background: #000;
 }
 
-.content-wrapper {
-  display: none;
+#about {
+  height: 50vh;
+  background: #f00;
 }
 
-.loader {
-    border: 0px solid transparent;
-    border-top: 5px solid #ff0000;
-    border-radius: 50%;
-    width: 120px;
-    height: 120px;
+#resume {
+  height: 50vh;
+  background: #0f0;
+}
+
+#projects {
+  height: 50vh;
+  background: #000;
+}
+
+#footer {
+  height: 20vh;
+
+  &>.content {
+    &>.contact a {
+      font-size: 2em;
+      color: #000;
+      letter-spacing: 5px;
+      @include crossbrowser(transition,.5s ease);
+
+      &:hover { color: rgb(255,0,0); }
+    }
+  }
+}
+
+@media screen and (min-width: 320px) {
+  .nav.left { display: none; }
+}
+
+@media screen and (min-width: 768px) {
+  .nav.left {
+    @include verticalnav;
     display: block;
-    margin: auto;
-    @include crossbrowser(animation, spin 0.5s infinite linear);
+    left: 0;
+    z-index: 1;
+  }
+
+  .nav.item {
+    width: 100%;
+    display: block;
+    text-align: center;
+  }
 }
 
-.loading {
-	position: fixed;
-	left: 0px;
-	top: 0px;
-	width: 100%;
-	height: 100%;
-	z-index: 9999;
-	background: url(../images/loading.gif) center no-repeat #fff;
-}
-
-.my-text {
-  text-align: center;
-  color: #fff;
-  font-size: 40px;
-  width: 100%;
-}
-
-.social-media a {
-	transition: 0.5s;
-}
-
-.social-media a:hover {
-	color: #ff0000;
+@media screen and (min-width: 991px) {
 }

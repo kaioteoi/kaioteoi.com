@@ -8,6 +8,12 @@
 
 // Crossbrowser animation keyframes simplifier
 // @include keyframes(ANIMATION NAME) {
-// 	CSS CONTENT	
+// 	CSS CONTENT
 // }
 @import './keyframes';
+
+// Vertical nav class default attributes
+// @include verticalnav
+@import './verticalnav';
+
+// ETC
