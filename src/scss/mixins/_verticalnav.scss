@@ -1,0 +1,38 @@
+// Vertical nav class default attributes
+
+@mixin verticalnav {
+  @mixin active { background-color: #000000; color: #fff; }
+
+  .nav-left {
+    width: 100px;
+    height: 100vh;
+    position: fixed;
+    visibility: visible;
+    display: block;
+    left: 0;
+    z-index: 1;
+
+    &:first-child { margin-top: 5vh; }
+    &:last-child { margin-bottom: 0; }
+  }
+
+  .nav-item {
+    transition: 0.5s;
+    background-color: rgba(0,0,0,.5);
+    color: #fff;
+    display: block;
+    margin-bottom: 5px;
+
+    &:hover { @include active; }
+
+    & a {
+      color: #fff;
+      text-decoration: none;
+      padding: 5px;
+      display: block;
+      @include crossbrowser(transition,all 0.5s ease);
+    }
+  }
+
+  .navbar-item-active { @include active; }
+}

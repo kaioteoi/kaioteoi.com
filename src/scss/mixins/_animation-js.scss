@@ -1,0 +1,10 @@
+@mixin animation-js {
+  .animation-js {
+    opacity: 0;
+    transition: 1s;
+  }
+
+  .animation-js-active {
+    opacity: 1;
+  }
+}

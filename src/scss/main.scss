@@ -1,0 +1,76 @@
+// Mixins
+
+@import './mixins/main';
+
+@mixin section-layout {
+  display: table;
+  width: 100%;
+  position: relative;
+}
+
+@mixin content-center {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+// Include vertical nav styles from /mixins/_verticalnav.scss
+@include verticalnav;
+
+@include animation-js;
+
+@include clearfix;
+
+@include hrs;
+
+// Fonts
+
+@font-face { @include font-family(Moon Light,moon-light,"../fonts"); }
+
+// Styles
+
+body {
+  font-family: Moon Light;
+  color: #000;
+}
+
+h4 {
+  font-size: 1.2em;
+}
+
+#header, #about, #resume, #projects, #footer {
+  @include section-layout;
+
+  height: 100vh;
+  background-color: #fff;
+
+  &>.content { @include content-center; }
+}
+
+#header {
+  background-color: #000;
+  color: #fff;
+}
+
+#projects {
+  height: 80vh;
+}
+
+#footer {
+  height: 20vh;
+
+  &>.content {
+    &>.contact a {
+      font-size: 2em;
+      color: #000;
+      letter-spacing: 5px;
+
+      @include crossbrowser(transition,0.5s);
+
+      &:hover { color: rgb(255,0,0); }
+    }
+  }
+}
+
+@media screen and (min-width: 991px) {
+}
