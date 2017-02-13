@@ -1,35 +1,70 @@
 var gulp = require('gulp');
 
-var del = require('del');
-var sass = require('gulp-sass');
-var gulpIf = require('gulp-if');
-var cache = require('gulp-cache');
-var uglify = require('gulp-uglify');
-var useref = require('gulp-useref');
-var cssnano = require('gulp-cssnano');
-var imagemin = require('gulp-imagemin');
-var runSequence = require('run-sequence');
-var browserSync = require('browser-sync').create();
+var del = require('del'),
+    sass = require('gulp-sass'),
+    gulpIf = require('gulp-if'),
+    gutil = require('gulp-util'),
+    cache = require('gulp-cache'),
+    uglify = require('gulp-uglify'),
+    useref = require('gulp-useref'),
+    plumber = require('gulp-plumber'),
+    cssnano = require('gulp-cssnano'),
+    imagemin = require('gulp-imagemin'),
+    runSequence = require('run-sequence'),
+    livereload = require('gulp-livereload');
+
+/*
+ *
+ * DEVELOPMENT BUILDER
+ *
+ */
+
+var onError = function (err) {
+  gutil.log(gutil.colors.green(err));
+  this.emit('end');
+};
 
 gulp.task('sass', function() {
-  return gulp.src('dev/scss/*.scss') // Gets all files ending with .scss in dev/scss
+  return gulp.src('src/scss/*.scss')
+    .pipe(plumber({errorHandler: onError}))
     .pipe(sass())
-    .pipe(gulp.dest('dev/css'))
-    .pipe(browserSync.reload({
-      stream: true
-    }))
+    .pipe(gulp.dest('src/css'))
+    .pipe(livereload());
 });
 
-gulp.task('browserSync', function() {
-  browserSync.init({
-    server: {
-      baseDir: 'dev'
-    },
-  })
+gulp.task('html', function() {
+  return gulp.src('src/*.html')
+    .pipe(livereload());
 });
+
+gulp.task('js', function() {
+  return gulp.src('src/js/*.js')
+    .pipe(plumber({errorHandler: onError}))
+    .pipe(livereload());
+});
+
+gulp.task('watch', ['sass','html','js'], function (){
+  livereload.listen();
+
+  //Watch SCSS files
+  gulp.watch('src/scss/**/*.scss', ['sass']);
+
+  //Watch Javascripts files
+  gulp.watch('src/js/*.js', ['js']);
+
+  //Watch HTML file
+  gulp.watch('src/*.html', ['html']);
+});
+
+
+/*
+ *
+ * DISTIBRUTION BUILDER
+ *
+ */
 
 gulp.task('useref', function(cb){
-  return gulp.src('dev/*.html')
+  return gulp.src('src/*.html')
     .pipe(useref())
     // Minifies only if it's a JS file
     .pipe(gulpIf('*.js', uglify()))
@@ -39,7 +74,7 @@ gulp.task('useref', function(cb){
 });
 
 gulp.task('images', function(){
-  return gulp.src('dev/images/**/*.+(png|jpg|jpeg|gif|svg)')
+  return gulp.src('src/images/**/*.+(png|jpg|jpeg|gif|svg)')
   // Caching images that ran through imagemin
   .pipe(cache(imagemin({
       interlaced: true
@@ -48,13 +83,8 @@ gulp.task('images', function(){
 });
 
 gulp.task('fonts', function() {
-  return gulp.src('dev/fonts/**/*')
+  return gulp.src('src/fonts/**/*')
   .pipe(gulp.dest('dist/fonts'))
-});
-
-gulp.task('watch', ['sass','browserSync'], function (){
-  gulp.watch('dev/scss/**/*.scss', ['sass']);
-  gulp.watch(['dev/*.html','dev/js/*.js'], browserSync.reload);
 });
 
 gulp.task('clean:dist', function() {
