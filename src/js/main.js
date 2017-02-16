@@ -15,7 +15,7 @@ debounce = function(func, wait, immediate) {
 };
 
 smoothScroll = function() {
-  $('.nav-item>a[href^="#"]').on('click',function (e) {
+  $('.nav-item>a[href^="#"]').on('click',function(e) {
       e.preventDefault();
 
       var target = this.hash;
@@ -24,6 +24,17 @@ smoothScroll = function() {
       $('html, body').stop().animate({
           'scrollTop': $target.offset().top
       }, 900, 'swing');
+  });
+
+  $('.scroll-down-container>a[href^="#"]').on('click', function(e) {
+    e.preventDefault();
+
+    var target = this.hash;
+    var $target = $(target);
+
+    $('html, body').stop().animate({
+        'scrollTop': $target.offset().top
+    }, 900, 'swing');
   });
 };
 
@@ -75,6 +86,18 @@ activeMenu = function() {
   activeMenu();
 
   $(document)
-  .scroll(debounce(function(){animateScroll();}, 200))
-  .scroll(debounce(function(){activeMenu();}, 100));
+    .scroll(debounce(function(){animateScroll();}, 200))
+    .scroll(debounce(function(){activeMenu();}, 100));
+
+  /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
+  particlesJS.load('particles-js', 'assets/particles.json');
+
+  /* jQuery Scrollify - A jQuery plugin that assists scrolling and snaps to sections */
+  $.scrollify({
+    section: ".animation-js",
+    interstitialSection : "#header,#footer",
+    scrollSpeed: 1100,
+    updateHash: false,
+    touchScroll: false
+  });
 })();

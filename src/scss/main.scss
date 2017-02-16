@@ -21,24 +21,46 @@
 
 @include clearfix;
 
-@include hrs;
+@include scroll-down;
+
+@include profile;
+
+@include noise;
 
 // Fonts
-
+//@mixin font-family($font-family, $font-name, $path)
 @font-face { @include font-family(Moon Light,moon-light,"../fonts"); }
+
+@font-face { @include font-family(Audiowide,audiowide-webfont,"../fonts"); }
 
 // Styles
 
 body {
   font-family: Moon Light;
   color: #000;
+  // overflow: hidden;
+
+  @media screen and (max-width: 768px){ overflow: auto; }
+}
+
+scrollbar {
+  display: none;
 }
 
 h4 {
   font-size: 1.2em;
 }
 
-#header, #about, #resume, #projects, #footer {
+#particles-js {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+#header, #about, #projects, #footer {
   @include section-layout;
 
   height: 100vh;
@@ -48,6 +70,7 @@ h4 {
 }
 
 #header {
+  font-family: Audiowide;
   background-color: #000;
   color: #fff;
 }
@@ -58,11 +81,13 @@ h4 {
 
 #footer {
   height: 20vh;
+  background-color: #000;
+  color: #fff;
 
   &>.content {
     &>.contact a {
       font-size: 2em;
-      color: #000;
+      color: #fff;
       letter-spacing: 5px;
 
       @include crossbrowser(transition,0.5s);
