@@ -1,0 +1,25 @@
+@mixin scroll-down {
+  .scroll-down-container {
+    width: 100%;
+    position: absolute;
+    display: block;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+  }
+
+  .scroll-down {
+    color: #fff;
+    font-size: 2em;
+    margin-bottom: 10px;
+
+    @include crossbrowser(animation,updown 2s infinite);
+    @include crossbrowser(transition,0.5s);
+  }
+
+  @include keyframes(updown) {
+    0% { transform: translate(0,0); }
+    50% { transform: translate(0,-20px); }
+    100% { transform: translate(0,0); }
+  }
+}
