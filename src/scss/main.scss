@@ -2,18 +2,6 @@
 
 @import './mixins/main';
 
-@mixin section-layout {
-  display: table;
-  width: 100%;
-  position: relative;
-}
-
-@mixin content-center {
-  display: table-cell;
-  vertical-align: middle;
-  text-align: center;
-}
-
 // Include vertical nav styles from /mixins/_verticalnav.scss
 @include verticalnav;
 
@@ -21,11 +9,13 @@
 
 @include clearfix;
 
-@include scroll-down;
+@include scroll-up-down;
 
 @include profile;
 
 @include noise;
+
+@include floating;
 
 // Fonts
 //@mixin font-family($font-family, $font-name, $path)
@@ -43,10 +33,6 @@ body {
   @media screen and (max-width: 768px){ overflow: auto; }
 }
 
-scrollbar {
-  display: none;
-}
-
 h4 {
   font-size: 1.2em;
 }
@@ -61,12 +47,18 @@ h4 {
 }
 
 #header, #about, #projects, #footer {
-  @include section-layout;
+  display: table;
+  width: 100%;
+  position: relative;
 
   height: 100vh;
   background-color: #fff;
 
-  &>.content { @include content-center; }
+  &>.content {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+  }
 }
 
 #header {
@@ -75,12 +67,8 @@ h4 {
   color: #fff;
 }
 
-#projects {
-  height: 80vh;
-}
-
 #footer {
-  height: 20vh;
+  height: 30vh;
   background-color: #000;
   color: #fff;
 

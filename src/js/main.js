@@ -1,5 +1,5 @@
 // Debounce from Lodash
-debounce = function(func, wait, immediate) {
+debounce = (func, wait, immediate) => {
   var timeout;
   return function() {
     var context = this, args = arguments;
@@ -14,23 +14,24 @@ debounce = function(func, wait, immediate) {
   };
 };
 
-smoothScroll = function() {
+onClickScroll = () => {
   $('.nav-item>a[href^="#"]').on('click',function(e) {
       e.preventDefault();
 
-      var target = this.hash;
-      var $target = $(target);
+      var target = this.hash,
+          $target = $(target),
+          activeClass = 'navbar-item-active';
 
       $('html, body').stop().animate({
           'scrollTop': $target.offset().top
-      }, 900, 'swing');
+      }, 900, 'swing',$(this).parent().addClass(activeClass));
   });
 
   $('.scroll-down-container>a[href^="#"]').on('click', function(e) {
     e.preventDefault();
 
-    var target = this.hash;
-    var $target = $(target);
+    var target = this.hash,
+        $target = $(target);
 
     $('html, body').stop().animate({
         'scrollTop': $target.offset().top
@@ -38,11 +39,11 @@ smoothScroll = function() {
   });
 };
 
-animateScroll = function() {
+animateScroll = () => {
   var $target = $('.animation-js'),
-  animationClass = 'animation-js-active',
-  offset = $(window).height() * 3/4;
-  var documentTop = $(document).scrollTop();
+      animationClass = 'animation-js-active',
+      offset = $(window).height() * 3/4,
+      documentTop = $(document).scrollTop();
 
   $target.each(function(){
     var itemTop = $(this).offset().top;
@@ -55,17 +56,16 @@ animateScroll = function() {
   });
 };
 
-activeMenu = function() {
+activeMenu = () => {
   var $section = $('.animation-js'),
-  activeClass = 'navbar-item-active';
-
-  var documentTop = $(document).scrollTop();
+      activeClass = 'navbar-item-active',
+      documentTop = $(document).scrollTop();
 
   $section.each(function() {
     var itemTop = $(this).offset().top,
-    itemHeight = $(this).height() * 1/2,
-    itemId = $(this).parent().attr("id"),
-    $target = $('.nav-item>a[href^="#'+itemId+'"]').parent();
+        itemHeight = $(this).height() * 1/2,
+        itemId = $(this).parent().attr("id"),
+        $target = $('.nav-item>a[href^="#'+itemId+'"]').parent();
 
     if (documentTop >= itemTop - itemHeight && documentTop < itemTop + itemHeight) {
       $target.addClass(activeClass);
@@ -75,9 +75,55 @@ activeMenu = function() {
   })
 };
 
-(function(){
+scrollButtons = () => {
+  var $scrollUp = $('.scroll-up'), $scrollDown = $('.scroll-down'),
+      headerTop = $('#header').offset().top, headerHeight = $('#header').height(),
+      footerTop = $('#footer').offset().top, footerHeight = $('#footer').height(),
+      documentTop = $(document).scrollTop();
+
+  if(documentTop >= headerHeight) {
+    showScroll($scrollUp);
+    $scrollDown.css("color","#000");
+  }else if(documentTop <= documentTop-footerHeight){
+    hideScroll($scrollUp);
+    $scrollDown.css("color","#fff");
+  }
+
+  if(documentTop > footerTop-footerHeight) {
+    hideScroll($scrollDown);
+    $scrollUp.css("color","#fff")
+  }else {
+    showScroll($scrollDown);
+    $scrollUp.css("color","#000");
+  }
+
+};
+
+showScroll = (scroll) => $(scroll).css("display","inline-block");
+hideScroll = (scroll) => $(scroll).css("display","none");
+
+movePreviousSection = () => $.scrollify.previous();
+moveNextSection = () => $.scrollify.next();
+
+((i,s,o,g,r,a,m) => {
+  //Google Analytics code
+  i['GoogleAnalyticsObject']=r;
+  i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)
+  },
+  i[r].l=1*new Date();
+  a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];
+  a.async=1;
+  a.src=g;
+  m.parentNode.insertBefore(a,m)
+
+
+  ga('create', 'UA-92186332-1', 'auto');
+  ga('send', 'pageview');
+
   //Smooth in page scroll transition
-  smoothScroll();
+  onClickScroll();
 
   //On scroll animation
   animateScroll();
@@ -85,9 +131,13 @@ activeMenu = function() {
   //Active menu according to focused section
   activeMenu();
 
+  //Hide/show scroll buttons
+  scrollButtons();
+
   $(document)
     .scroll(debounce(function(){animateScroll();}, 200))
-    .scroll(debounce(function(){activeMenu();}, 100));
+    .scroll(debounce(function(){activeMenu();}, 100))
+    .scroll(debounce(function(){scrollButtons();}, 200));
 
   /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
   particlesJS.load('particles-js', 'assets/particles.json');
@@ -100,4 +150,4 @@ activeMenu = function() {
     updateHash: false,
     touchScroll: false
   });
-})();
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');

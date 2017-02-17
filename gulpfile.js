@@ -3,7 +3,6 @@ var gulp = require('gulp');
 var del = require('del'),
     sass = require('gulp-sass'),
     gulpIf = require('gulp-if'),
-    gutil = require('gulp-util'),
     cache = require('gulp-cache'),
     uglify = require('gulp-uglify'),
     useref = require('gulp-useref'),
@@ -20,7 +19,7 @@ var del = require('del'),
  */
 
 var onError = function (err) {
-  gutil.log(gutil.colors.green(err));
+  console.log(err);
   this.emit('end');
 };
 

@@ -59,58 +59,28 @@ div:after, div:before {
 
 .scroll-down-container {
   width: 100%;
-  position: absolute;
+  position: fixed;
   display: block;
   bottom: 0;
   left: 0;
   text-align: center; }
+  .scroll-down-container > a {
+    cursor: pointer; }
+
+.scroll-up {
+  color: #000; }
 
 .scroll-down {
-  color: #fff;
+  color: #fff; }
+
+.scroll-down, .scroll-up {
   font-size: 2em;
   margin-bottom: 10px;
-  -webkit-animation: updown 2s infinite;
-  -moz-animation: updown 2s infinite;
-  -ms-animation: updown 2s infinite;
-  -o-animation: updown 2s infinite;
-  animation: updown 2s infinite;
   -webkit-transition: 0.5s;
   -moz-transition: 0.5s;
   -ms-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s; }
-
-@-webkit-keyframes updown {
-  0% {
-    transform: translate(0, 0); }
-  50% {
-    transform: translate(0, -20px); }
-  100% {
-    transform: translate(0, 0); } }
-
-@-moz-keyframes updown {
-  0% {
-    transform: translate(0, 0); }
-  50% {
-    transform: translate(0, -20px); }
-  100% {
-    transform: translate(0, 0); } }
-
-@-o-keyframes updown {
-  0% {
-    transform: translate(0, 0); }
-  50% {
-    transform: translate(0, -20px); }
-  100% {
-    transform: translate(0, 0); } }
-
-@keyframes updown {
-  0% {
-    transform: translate(0, 0); }
-  50% {
-    transform: translate(0, -20px); }
-  100% {
-    transform: translate(0, 0); } }
 
 .profile {
   width: 200px;
@@ -321,6 +291,84 @@ div:after, div:before {
     opacity: .6;
     left: -2px; } }
 
+.floating {
+  -webkit-animation: updown 2s infinite;
+  -moz-animation: updown 2s infinite;
+  -ms-animation: updown 2s infinite;
+  -o-animation: updown 2s infinite;
+  animation: updown 2s infinite; }
+
+.floating-rev {
+  -webkit-animation: updown 2s infinite;
+  -moz-animation: updown 2s infinite;
+  -ms-animation: updown 2s infinite;
+  -o-animation: updown 2s infinite;
+  animation: updown 2s infinite; }
+
+@-webkit-keyframes updown {
+  0% {
+    transform: translate(0, 0); }
+  50% {
+    transform: translate(0, -20px); }
+  100% {
+    transform: translate(0, 0); } }
+
+@-moz-keyframes updown {
+  0% {
+    transform: translate(0, 0); }
+  50% {
+    transform: translate(0, -20px); }
+  100% {
+    transform: translate(0, 0); } }
+
+@-o-keyframes updown {
+  0% {
+    transform: translate(0, 0); }
+  50% {
+    transform: translate(0, -20px); }
+  100% {
+    transform: translate(0, 0); } }
+
+@keyframes updown {
+  0% {
+    transform: translate(0, 0); }
+  50% {
+    transform: translate(0, -20px); }
+  100% {
+    transform: translate(0, 0); } }
+
+@-webkit-keyframes updown-rev {
+  0% {
+    transform: translate(0, -20px); }
+  50% {
+    transform: translate(0, 0); }
+  100% {
+    transform: translate(0, -20px); } }
+
+@-moz-keyframes updown-rev {
+  0% {
+    transform: translate(0, -20px); }
+  50% {
+    transform: translate(0, 0); }
+  100% {
+    transform: translate(0, -20px); } }
+
+@-o-keyframes updown-rev {
+  0% {
+    transform: translate(0, -20px); }
+  50% {
+    transform: translate(0, 0); }
+  100% {
+    transform: translate(0, -20px); } }
+
+@keyframes updown-rev {
+  0% {
+    transform: translate(0, -20px); }
+  50% {
+    transform: translate(0, 0); }
+  100% {
+    transform: translate(0, -20px); } }
+
 @font-face {
   font-family: Moon Light;
   src: url(../fonts/moon-light.eot);
@@ -337,9 +385,6 @@ body {
   @media screen and (max-width: 768px) {
     body {
       overflow: auto; } }
-
-scrollbar {
-  display: none; }
 
 h4 {
   font-size: 1.2em; }
@@ -368,11 +413,8 @@ h4 {
   background-color: #000;
   color: #fff; }
 
-#projects {
-  height: 80vh; }
-
 #footer {
-  height: 20vh;
+  height: 30vh;
   background-color: #000;
   color: #fff; }
   #footer > .content > .contact a {
