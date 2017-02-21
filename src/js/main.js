@@ -1,5 +1,5 @@
 // Debounce from Lodash
-debounce = (func, wait, immediate) => {
+debounce = function(func, wait, immediate) {
   var timeout;
   return function() {
     var context = this, args = arguments;
@@ -14,7 +14,7 @@ debounce = (func, wait, immediate) => {
   };
 };
 
-onClickScroll = () => {
+onClickScroll = function() {
   $('.nav-item>a[href^="#"]').on('click',function(e) {
       e.preventDefault();
 
@@ -39,13 +39,13 @@ onClickScroll = () => {
   });
 };
 
-animateScroll = () => {
+animateScroll = function() {
   var $target = $('.animation-js'),
       animationClass = 'animation-js-active',
       offset = $(window).height() * 3/4,
       documentTop = $(document).scrollTop();
 
-  $target.each(function(){
+  $target.each(function() {
     var itemTop = $(this).offset().top;
 
     if (documentTop > itemTop - offset) {
@@ -56,7 +56,7 @@ animateScroll = () => {
   });
 };
 
-activeMenu = () => {
+activeMenu = function() {
   var $section = $('.animation-js'),
       activeClass = 'navbar-item-active',
       documentTop = $(document).scrollTop();
@@ -75,40 +75,40 @@ activeMenu = () => {
   })
 };
 
-scrollButtons = () => {
-  var $scrollUp = $('.scroll-up'), $scrollDown = $('.scroll-down'),
-      headerTop = $('#header').offset().top, headerHeight = $('#header').height(),
-      footerTop = $('#footer').offset().top, footerHeight = $('#footer').height(),
+scrollButtons = function() {
+  var $scrollUp = $('.scroll-up'),
+      $scrollDown = $('.scroll-down'),
+      headerHeight = $('#header').height(),
+      projectsTop = $('#projects').offset().top,
       documentTop = $(document).scrollTop();
 
   if(documentTop >= headerHeight) {
     showScroll($scrollUp);
     $scrollDown.css("color","#000");
-  }else if(documentTop <= documentTop-footerHeight){
+  }else{
     hideScroll($scrollUp);
     $scrollDown.css("color","#fff");
   }
 
-  if(documentTop > footerTop-footerHeight) {
+  if(documentTop > projectsTop+1) {
     hideScroll($scrollDown);
-    $scrollUp.css("color","#fff")
-  }else {
+    $scrollUp.css("color","#fff");
+  }else{
     showScroll($scrollDown);
     $scrollUp.css("color","#000");
   }
-
 };
 
-showScroll = (scroll) => $(scroll).css("display","inline-block");
-hideScroll = (scroll) => $(scroll).css("display","none");
+showScroll = function(scroll){ $(scroll).css("display","inline-block"); };
+hideScroll = function(scroll){ $(scroll).css("display","none"); };
 
-movePreviousSection = () => $.scrollify.previous();
-moveNextSection = () => $.scrollify.next();
+movePreviousSection = function() { $.scrollify.previous(); };
+moveNextSection = function() { $.scrollify.next(); };
 
-((i,s,o,g,r,a,m) => {
+(function(i,s,o,g,r,a,m) {
   //Google Analytics code
   i['GoogleAnalyticsObject']=r;
-  i[r]=i[r]||function(){
+  i[r]=i[r]||function() {
     (i[r].q=i[r].q||[]).push(arguments)
   },
   i[r].l=1*new Date();
@@ -116,11 +116,13 @@ moveNextSection = () => $.scrollify.next();
   m=s.getElementsByTagName(o)[0];
   a.async=1;
   a.src=g;
-  m.parentNode.insertBefore(a,m)
-
+  m.parentNode.insertBefore(a,m);
 
   ga('create', 'UA-92186332-1', 'auto');
   ga('send', 'pageview');
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+(function() {
 
   //Smooth in page scroll transition
   onClickScroll();
@@ -150,4 +152,4 @@ moveNextSection = () => $.scrollify.next();
     updateHash: false,
     touchScroll: false
   });
-})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+})();
