@@ -139,7 +139,7 @@ moveNextSection = function() { $.scrollify.next(); };
   $(document)
     .scroll(debounce(function(){animateScroll();}, 200))
     .scroll(debounce(function(){activeMenu();}, 100))
-    .scroll(debounce(function(){scrollButtons();}, 200));
+    .scroll(debounce(function(){scrollButtons();}, 100));
 
   /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
   particlesJS.load('particles-js', 'assets/particles.json');

@@ -7,7 +7,7 @@
     left: 0;
     text-align: center;
 
-    &> a {
+    & a {
       cursor: pointer;
     }
   }
@@ -18,6 +18,10 @@
   .scroll-down, .scroll-up {
     font-size: 2em;
     margin-bottom: 10px;
+
+    &:hover {
+      color: #ff0000!important;
+    }
 
     @include crossbrowser(transition,0.5s);
   }
