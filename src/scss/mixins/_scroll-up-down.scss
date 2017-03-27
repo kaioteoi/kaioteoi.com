@@ -19,10 +19,6 @@
     font-size: 2em;
     margin-bottom: 10px;
 
-    &:hover {
-      color: #ff0000!important;
-    }
-
     @include crossbrowser(transition,0.5s);
   }
 }

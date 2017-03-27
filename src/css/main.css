@@ -81,10 +81,11 @@ div:after, div:before {
   -ms-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s; }
-  .scroll-down:hover, .scroll-up:hover {
-    color: #ff0000 !important; }
 
 .profile {
+  background-image: url(../images/profile.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
   width: 200px;
   height: 200px;
   border-radius: 10%;
