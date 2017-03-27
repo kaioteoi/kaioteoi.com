@@ -5,6 +5,7 @@ var del = require('del'),
     gulpIf = require('gulp-if'),
     cache = require('gulp-cache'),
     uglify = require('gulp-uglify'),
+    notify = require('gulp-notify'),
     useref = require('gulp-useref'),
     plumber = require('gulp-plumber'),
     cssnano = require('gulp-cssnano'),
@@ -28,6 +29,7 @@ gulp.task('sass', function() {
     .pipe(plumber({errorHandler: onError}))
     .pipe(sass())
     .pipe(gulp.dest('src/css'))
+    .pipe( notify({ message: 'SASS completed'}))
     .pipe(livereload());
 });
 
