@@ -64,7 +64,7 @@ div:after, div:before {
   bottom: 0;
   left: 0;
   text-align: center; }
-  .scroll-down-container > a {
+  .scroll-down-container a {
     cursor: pointer; }
 
 .scroll-up {
@@ -83,10 +83,14 @@ div:after, div:before {
   transition: 0.5s; }
 
 .profile {
+  background-image: url(../images/profile.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
   width: 200px;
   height: 200px;
+  border-radius: 10%;
   margin: auto;
-  background-color: #f00; }
+  background-color: #fff; }
 
 .noise {
   position: relative;

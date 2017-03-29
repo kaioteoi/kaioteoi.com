@@ -5,6 +5,7 @@ var del = require('del'),
     gulpIf = require('gulp-if'),
     cache = require('gulp-cache'),
     uglify = require('gulp-uglify'),
+    notify = require('gulp-notify'),
     useref = require('gulp-useref'),
     plumber = require('gulp-plumber'),
     cssnano = require('gulp-cssnano'),
@@ -29,6 +30,7 @@ gulp.task('sass', function() {
     .pipe(sass().on('error', sass.logError))
     // .pipe(sass())
     .pipe(gulp.dest('src/css'))
+    .pipe( notify({ message: 'SASS completed'}))
     .pipe(livereload());
 });
 
@@ -63,6 +65,12 @@ gulp.task('watch', ['sass','html','js'], function (){
  *
  */
 
+
+gulp.task('another-files:src', function() {
+  return gulp.src(['src/**/*.json','src/**/*.xml'])
+  .pipe(gulp.dest('dist'))
+ });
+
 gulp.task('useref', function(cb){
   return gulp.src('src/*.html')
     .pipe(useref())
@@ -93,7 +101,7 @@ gulp.task('clean:dist', function() {
 
 gulp.task('build', function(callback) {
   runSequence(['clean:dist','sass'],
-    ['useref','images','fonts'],
+    ['useref','images','fonts','another-files:src'],
     callback
   )
 });

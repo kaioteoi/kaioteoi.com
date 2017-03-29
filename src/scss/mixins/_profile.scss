@@ -1,8 +1,12 @@
 @mixin profile {
   .profile {
+    background-image: url(../images/profile.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
     width: 200px;
     height: 200px;
+    border-radius: 10%;
     margin: auto;
-    background-color: #f00;
+    background-color: #fff;
   }
 }
