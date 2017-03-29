@@ -25,8 +25,9 @@ var onError = function (err) {
 
 gulp.task('sass', function() {
   return gulp.src('src/scss/*.scss')
-    .pipe(plumber({errorHandler: onError}))
-    .pipe(sass())
+    // .pipe(plumber({errorHandler: onError}))
+    .pipe(sass().on('error', sass.logError))
+    // .pipe(sass())
     .pipe(gulp.dest('src/css'))
     .pipe(livereload());
 });
