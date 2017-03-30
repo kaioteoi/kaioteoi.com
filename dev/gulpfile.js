@@ -19,17 +19,6 @@ var del = require('del'),
  *
  */
 
- var paths = {
-  src: {
-    scss: 'src/public/scss/*.scss',
-    html: 'src/*.html',
-    php: 'src/*.php',
-    js: 'src/public/js/*.js',
-
-  }
-
- }
-
 var onError = function (err) {
   console.log(err);
   this.emit('end');
