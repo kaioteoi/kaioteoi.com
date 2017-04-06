@@ -21,13 +21,27 @@ var del = require('del'),
 
  var paths = {
   src: {
+    this: 'src',
     scss: 'src/public/scss/*.scss',
+    sass: 'src/public/sass/*.sass',
+    all_scss: 'src/public/scss/**/*.scss',
+    all_sass: 'src/public/sass/**/*.sass',
     html: 'src/*.html',
     php: 'src/*.php',
     js: 'src/public/js/*.js',
-
+    css: 'src/public/css',
+    images: 'src/public/images/**/*.+(png|jpg|jpeg|gif|svg)',
+    fonts: 'src/public/fonts/**/*'
+  },
+  dist: {
+    this: 'dist',
+    html: 'dist/*.html',
+    php: 'dist/*.php',
+    js: 'dist/pubic/js/*.js',
+    css: 'dist/public/css',
+    images: 'dist/public/images',
+    fonts: 'dist/public/fonts'
   }
-
  }
 
 var onError = function (err) {
@@ -36,23 +50,24 @@ var onError = function (err) {
 };
 
 gulp.task('sass', function() {
-  return gulp.src('src/scss/*.scss')
+  return gulp.src([paths.src.scss, paths.src.sass])
     // .pipe(plumber({errorHandler: onError}))
     .pipe(sass().on('error', sass.logError))
     // .pipe(sass())
-    .pipe(gulp.dest('src/css'))
+    .pipe(gulp.dest(paths.src.css))
     .pipe( notify({ message: 'SASS completed'}))
     .pipe(livereload());
 });
 
 gulp.task('html', function() {
-  return gulp.src('src/*.html')
+  return gulp.src(paths.src.html)
     .pipe(livereload());
 });
 
 gulp.task('js', function() {
-  return gulp.src('src/js/*.js')
+  return gulp.src(paths.src.js)
     .pipe(plumber({errorHandler: onError}))
+    .pipe( notify({ message: 'JS completed'}))
     .pipe(livereload());
 });
 
@@ -60,13 +75,13 @@ gulp.task('watch', ['sass','html','js'], function (){
   livereload.listen();
 
   //Watch SCSS files
-  gulp.watch('src/scss/**/*.scss', ['sass']);
+  gulp.watch([paths.src.all_scss, paths.src.all_sass], ['sass']);
 
   //Watch Javascripts files
-  gulp.watch('src/js/*.js', ['js']);
+  gulp.watch(paths.src.js, ['js']);
 
   //Watch HTML file
-  gulp.watch('src/*.html', ['html']);
+  gulp.watch(paths.src.html, ['html']);
 });
 
 
@@ -78,36 +93,36 @@ gulp.task('watch', ['sass','html','js'], function (){
 
 
 gulp.task('another-files:src', function() {
-  return gulp.src(['src/**/*.json','src/**/*.xml'])
-  .pipe(gulp.dest('dist'))
+  return gulp.src(['src/public/**/*.json','src/**/*.xml'])
+  .pipe(gulp.dest(paths.dist.this))
  });
 
 gulp.task('useref', function(cb){
-  return gulp.src('src/*.html')
+  return gulp.src(paths.src.html)
     .pipe(useref())
     // Minifies only if it's a JS file
     .pipe(gulpIf('*.js', uglify()))
     // Minifies only if it's a CSS file
     .pipe(gulpIf('*.css', cssnano()))
-    .pipe(gulp.dest('dist'))
+    .pipe(gulp.dest(paths.dist.this))
 });
 
 gulp.task('images', function(){
-  return gulp.src('src/images/**/*.+(png|jpg|jpeg|gif|svg)')
+  return gulp.src(paths.src.images)
   // Caching images that ran through imagemin
   .pipe(cache(imagemin({
       interlaced: true
     })))
-  .pipe(gulp.dest('dist/images'))
+  .pipe(gulp.dest(paths.dist.images))
 });
 
 gulp.task('fonts', function() {
-  return gulp.src('src/fonts/**/*')
-  .pipe(gulp.dest('dist/fonts'))
+  return gulp.src(paths.src.fonts)
+  .pipe(gulp.dest(paths.dist.fonts))
 });
 
 gulp.task('clean:dist', function() {
-  return del.sync('dist');
+  return del.sync(paths.dist.this);
 });
 
 gulp.task('build', function(callback) {
