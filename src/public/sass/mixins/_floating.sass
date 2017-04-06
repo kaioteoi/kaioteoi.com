@@ -1,0 +1,11 @@
+@mixin floating
+  .floating
+    @include crossbrowser(animation,updown 2s infinite)
+
+  @include keyframes(updown)
+    0%
+      transform: translate(0,0)
+    50%
+      transform: translate(0,-20px)
+    100%
+      transform: translate(0,0) 

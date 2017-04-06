@@ -1,0 +1,8 @@
+// Mixin to simplify creation crossbrowsers @font-faces
+
+@mixin font-family($font-family, $font-name, $path)
+	$path: if($path == "", ".", $path)
+	@font-face
+		font-family: $font-family
+		src: url(#{$path}/#{$font-name}.eot)
+		src: url(#{$path}/#{$font-name}.eot?#iefix) format('embedded-opentype'),url(#{$path}/#{$font-name}.woff2) format('woff2'),url(#{$path}/#{$font-name}.woff) format('woff'),url(#{$path}/#{$font-name}.ttf) format('truetype'),url(#{$path}/#{$font-name}.svg#svg#{$font-name}) format('svg')
