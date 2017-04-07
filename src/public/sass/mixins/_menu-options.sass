@@ -1,4 +1,16 @@
 .menu-options
+  width: 100%
   position: absolute
   top: 40%
-  left: 10%
+  text-align: center
+
+  & svg
+    height: 200px
+    width: 200px
+    z-index: 0
+
+    &:hover path
+      fill: $black
+
+    & path
+      transition: 1s ease

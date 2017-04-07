@@ -7,14 +7,17 @@ div.main-title {
   height: 100%;
   width: 100%;
   display: table;
-  position: relative; }
-  div.main-title h1 {
+  position: relative;
+  z-index: 1; }
+  div.main-title h1, div.main-title h2 {
+    height: 0;
     transition: 1s;
-    display: table-cell;
+    display: table-row;
     position: relative;
     vertical-align: middle;
     text-align: center;
-    font-family: 'Kanji';
+    font-family: 'Kanji'; }
+  div.main-title h1 {
     font-size: 2em;
     font-size: 8vw; }
     @media screen and (min-width: 768px) {
@@ -35,12 +38,21 @@ div.menu-button {
   margin-left: 20px;
   border-radius: 50%;
   cursor: pointer;
-  z-index: 1; }
+  z-index: 2; }
 
 .menu-options {
+  width: 100%;
   position: absolute;
   top: 40%;
-  left: 10%; }
+  text-align: center; }
+  .menu-options svg {
+    height: 200px;
+    width: 200px;
+    z-index: 0; }
+    .menu-options svg:hover path {
+      fill: #000000; }
+    .menu-options svg path {
+      transition: 1s ease; }
 
 body, div, h1, h2, h3, span, p, section, main {
   margin: 0;
@@ -73,6 +85,11 @@ body {
   font-family: Kanji;
   src: url(../assets/fonts/kanji-webfont.eot);
   src: url(../assets/fonts/kanji-webfont.eot?#iefix) format("embedded-opentype"), url(../assets/fonts/kanji-webfont.woff2) format("woff2"), url(../assets/fonts/kanji-webfont.woff) format("woff"), url(../assets/fonts/kanji-webfont.ttf) format("truetype"), url(../assets/fonts/kanji-webfont.svg#svgkanji-webfont) format("svg"); }
+
+@font-face {
+  font-family: OneDay;
+  src: url(../assets/fonts/oneday-webfont.eot);
+  src: url(../assets/fonts/oneday-webfont.eot?#iefix) format("embedded-opentype"), url(../assets/fonts/oneday-webfont.woff2) format("woff2"), url(../assets/fonts/oneday-webfont.woff) format("woff"), url(../assets/fonts/oneday-webfont.ttf) format("truetype"), url(../assets/fonts/oneday-webfont.svg#svgoneday-webfont) format("svg"); }
 
 .floating {
   -webkit-animation: updown 2s infinite;
