@@ -4,6 +4,7 @@ var del = require('del'),
     sass = require('gulp-sass'),
     gulpIf = require('gulp-if'),
     cache = require('gulp-cache'),
+    babel = require('gulp-babel'),
     uglify = require('gulp-uglify'),
     notify = require('gulp-notify'),
     useref = require('gulp-useref'),
@@ -30,8 +31,8 @@ var del = require('del'),
     php: 'src/*.php',
     js: 'src/public/js/*.js',
     css: 'src/public/css',
-    images: 'src/public/images/**/*.+(png|jpg|jpeg|gif|svg)',
-    fonts: 'src/public/fonts/**/*'
+    images: 'src/public/assets/images/**/*.+(png|jpg|jpeg|gif|svg)',
+    fonts: 'src/public/assets/fonts/**/*'
   },
   dist: {
     this: 'dist',
@@ -39,8 +40,8 @@ var del = require('del'),
     php: 'dist/*.php',
     js: 'dist/pubic/js/*.js',
     css: 'dist/public/css',
-    images: 'dist/public/images',
-    fonts: 'dist/public/fonts'
+    images: 'dist/public/assets/images',
+    fonts: 'dist/public/assets/fonts'
   }
  }
 
@@ -66,6 +67,7 @@ gulp.task('html', function() {
 
 gulp.task('js', function() {
   return gulp.src(paths.src.js)
+    .pipe(babel())
     .pipe(plumber({errorHandler: onError}))
     .pipe( notify({ message: 'JS completed'}))
     .pipe(livereload());
